@@ -19,29 +19,30 @@
       {{ $kind := .Kind }}
       {{ $currentPage := . }}
       {{ range .Site.Menus.main }}
-        <li class="menu-item
+      <li class="menu-item
           {{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }} is-active{{ end }}
           {{ if and (eq .Identifier "tags") (eq $kind "taxonomy") }} is-active{{ end }}
           {{ if and (eq .Identifier "home") (eq $type "post") }} is-active{{ end }}">
-          <a href="{{ .URL }}">{{ .Name }}</a>
-        </li>
+        <a href="{{ .URL }}">{{ .Name }}</a>
+      </li>
       {{ end }}
 
-       <!-- Flag Language -->
-      {{ if .IsTranslated }}    
-        {{ range .Translations }}
-          <li class="menu-item">              
-              <a href="{{ .Permalink }}"><img src="{{ .Site.Params.flag }}" width="20px" /> {{ .Site.Params.language }}</a>
-          </li>
-        {{ end}}
+      <!-- Flag Language -->
+      {{ range .Translations }}
+      <li class="menu-item">
+        <a href="{{ .Permalink }}">
+          <img src="{{ .Site.Params.flag }}" width="20px" alt="{{ .Site.Params.language }}" />
+        </a>
+      </li>
       {{ end }}
     </ul>
   </nav>
-  <nav class="social-menu collapsed">
+  <nav class="social-menu">
     <h2 class="offscreen">Social Networks</h2>
     <ul class="social-list">
       {{- $emailIcon := "icon icon-email" -}}
       {{- $githubIcon := "icon icon-github" -}}
+      {{- $gitlabIcon := "icon icon-gitlab" -}}
       {{- $twitterIcon := "icon icon-twitter" -}}
       {{- $facebookIcon := "icon icon-facebook" -}}
       {{- $googleIcon := "icon icon-google" -}}
@@ -68,231 +69,240 @@
       {{- $rssIcon := "icon icon-rss" -}}
 
       {{- with .Site.Params.fontAwesome -}}
-        {{- $emailIcon = "fas fa-envelope" -}}
-        {{- $githubIcon = "fab fa-github" -}}
-        {{- $twitterIcon = "fab fa-twitter" -}}
-        {{- $facebookIcon = "fab fa-facebook" -}}
-        {{- $googleIcon = "fab fa-google-plus-g" -}}
-        {{- $instagramIcon = "fab fa-instagram" -}}
-        {{- $youtubeIcon = "fab fa-youtube" -}}
-        {{- $vimeoIcon = "fab fa-vimeo" -}}
-        {{- $mediumIcon = "fab fa-medium" -}}
-        {{- $redditIcon = "fab fa-reddit" -}}
-        {{- $quoraIcon = "fab fa-quora" -}}
-        {{- $stackoverflowIcon = "fab fa-stack-overflow" -}}
-        {{- $npmIcon = "fab fa-npm" -}}
-        {{- $dribbbleIcon = "fab fa-dribbble" -}}
-        {{- $behanceIcon = "fab fa-behance" -}}
-        {{- $pinterestIcon = "fab fa-pinterest" -}}
-        {{- $jsfiddleIcon = "fab fa-jsfiddle" -}}
-        {{- $codepenIcon = "fab fa-codepen" -}}
-        {{- $codesandboxIcon = "fas fa-code" -}}
-        {{- $weiboIcon = "fab fa-weibo" -}}
-        {{- $linkedinIcon = "fab fa-linkedin" -}}
-        {{- $zhihuIcon = "fab fa-zhihu" -}}
-        {{- $doubanIcon = "fas fa-comment" -}}
-        {{- $bilibiliIcon = "fas fa-video" -}}
-        {{- $rssIcon = "fas fa-rss" -}}
+      {{- $emailIcon = "fas fa-envelope" -}}
+      {{- $githubIcon = "fab fa-github" -}}
+      {{- $gitlabIcon = "fab fa-gitlab" -}}
+      {{- $twitterIcon = "fab fa-twitter" -}}
+      {{- $facebookIcon = "fab fa-facebook" -}}
+      {{- $googleIcon = "fab fa-google-plus-g" -}}
+      {{- $instagramIcon = "fab fa-instagram" -}}
+      {{- $youtubeIcon = "fab fa-youtube" -}}
+      {{- $vimeoIcon = "fab fa-vimeo" -}}
+      {{- $mediumIcon = "fab fa-medium" -}}
+      {{- $redditIcon = "fab fa-reddit" -}}
+      {{- $quoraIcon = "fab fa-quora" -}}
+      {{- $stackoverflowIcon = "fab fa-stack-overflow" -}}
+      {{- $npmIcon = "fab fa-npm" -}}
+      {{- $dribbbleIcon = "fab fa-dribbble" -}}
+      {{- $behanceIcon = "fab fa-behance" -}}
+      {{- $pinterestIcon = "fab fa-pinterest" -}}
+      {{- $jsfiddleIcon = "fab fa-jsfiddle" -}}
+      {{- $codepenIcon = "fab fa-codepen" -}}
+      {{- $codesandboxIcon = "fas fa-code" -}}
+      {{- $weiboIcon = "fab fa-weibo" -}}
+      {{- $linkedinIcon = "fab fa-linkedin" -}}
+      {{- $zhihuIcon = "fab fa-zhihu" -}}
+      {{- $doubanIcon = "fas fa-comment" -}}
+      {{- $bilibiliIcon = "fas fa-video" -}}
+      {{- $rssIcon = "fas fa-rss" -}}
       {{- end -}}
 
       {{- with .Site.Params.email -}}
-        <li class="social-item">
-          <a href="mailto:{{ . }}" title="Email" aria-label="Email">
-            <span class="{{ $emailIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="mailto:{{ . }}" title="Email" aria-label="Email">
+          <span class="{{ $emailIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.github -}}
-        <li class="social-item">
-          <a href="//github.com/{{ . }}" rel="me" title="GitHub" aria-label="GitHub">
-	    <span class="{{ $githubIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//github.com/{{ . }}" rel="me" title="GitHub" aria-label="GitHub">
+          <span class="{{ $githubIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
+      {{- end -}}
+
+      {{- with .Site.Params.gitlab -}}
+      <li class="social-item">
+        <a href="//gitlab.com/{{ . }}" rel="me" title="GitLab" aria-label="GitLab">
+          <span class="{{ $gitlabIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.twitter -}}
-        <li class="social-item">
-          <a href="//twitter.com/{{ . }}" rel="me" title="Twitter" aria-label="Twitter">
-            <span class="{{ $twitterIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//twitter.com/{{ . }}" rel="me" title="Twitter" aria-label="Twitter">
+          <span class="{{ $twitterIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.facebook -}}
-        <li class="social-item">
-          <a href="//www.facebook.com/{{ . }}" rel="me" title="Facebook" aria-label="Facebook">
-            <span class="{{ $facebookIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//www.facebook.com/{{ . }}" rel="me" title="Facebook" aria-label="Facebook">
+          <span class="{{ $facebookIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.google -}}
-        <li class="social-item">
-          <a href="//plus.google.com/{{ . }}" rel="me" title="Google+" aria-label="Google+">
-            <span class="{{ $googleIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//plus.google.com/{{ . }}" rel="me" title="Google+" aria-label="Google+">
+          <span class="{{ $googleIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.instagram -}}
-        <li class="social-item">
-          <a href="//www.instagram.com/{{ . }}" rel="me" title="Instagram" aria-label="Instagram">
-            <span class="{{ $instagramIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//www.instagram.com/{{ . }}" rel="me" title="Instagram" aria-label="Instagram">
+          <span class="{{ $instagramIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.youtube -}}
-        <li class="social-item">
-          <a href="//www.youtube.com/user/{{ . }}" rel="me" title="YouTube" aria-label="YouTube">
-            <span class="{{ $youtubeIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//www.youtube.com/user/{{ . }}" rel="me" title="YouTube" aria-label="YouTube">
+          <span class="{{ $youtubeIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.vimeo -}}
-        <li class="social-item">
-          <a href="//vimeo.com/{{ . }}" rel="me" title="Vimeo" aria-label="Vimeo">
-            <span class="{{ $vimeoIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//vimeo.com/{{ . }}" rel="me" title="Vimeo" aria-label="Vimeo">
+          <span class="{{ $vimeoIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.medium -}}
-        <li class="social-item">
-          <a href="//medium.com/@{{ . }}" rel="me" title="Medium" aria-label="Medium">
-            <span class="{{ $mediumIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//medium.com/@{{ . }}" rel="me" title="Medium" aria-label="Medium">
+          <span class="{{ $mediumIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.reddit -}}
-        <li class="social-item">
-          <a href="//www.reddit.com/user/{{ . }}" rel="me" title="Reddit" aria-label="Reddit">
-            <span class="{{ $redditIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//www.reddit.com/user/{{ . }}" rel="me" title="Reddit" aria-label="Reddit">
+          <span class="{{ $redditIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.quora -}}
-        <li class="social-item">
-          <a href="//www.quora.com/profile/{{ . }}" rel="me" title="Quora" aria-label="Quora">
-            <span class="{{ $quoraIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//www.quora.com/profile/{{ . }}" rel="me" title="Quora" aria-label="Quora">
+          <span class="{{ $quoraIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.stackoverflow -}}
-        <li class="social-item">
-          <a href="//stackoverflow.com/users/{{ . }}" rel="me" title="Stack Overflow"  aria-label="Stack Overflow">
-            <span class="{{ $stackoverflowIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//stackoverflow.com/users/{{ . }}" rel="me" title="Stack Overflow" aria-label="Stack Overflow">
+          <span class="{{ $stackoverflowIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.npm -}}
-        <li class="social-item">
-          <a href="//www.npmjs.com/~{{ . }}" rel="me" title="NPM" aria-label="NPM">
-            <span class="{{ $npmIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//www.npmjs.com/~{{ . }}" rel="me" title="NPM" aria-label="NPM">
+          <span class="{{ $npmIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.dribbble -}}
-        <li class="social-item">
-          <a href="//dribbble.com/{{ . }}" rel="me" title="Dribbble" aria-label="Dribbble">
-            <span class="{{ $dribbbleIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//dribbble.com/{{ . }}" rel="me" title="Dribbble" aria-label="Dribbble">
+          <span class="{{ $dribbbleIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.behance -}}
-        <li class="social-item">
-          <a href="//www.behance.net/{{ . }}" rel="me" title="Behance" aria-label="Behance">
-            <span class="{{ $behanceIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//www.behance.net/{{ . }}" rel="me" title="Behance" aria-label="Behance">
+          <span class="{{ $behanceIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.pinterest -}}
-        <li class="social-item">
-          <a href="//www.pinterest.com/{{ . }}" rel="me" title="Pinterest" aria-label="Pinterest">
-            <span class="{{ $pinterestIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//www.pinterest.com/{{ . }}" rel="me" title="Pinterest" aria-label="Pinterest">
+          <span class="{{ $pinterestIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.jsfiddle -}}
-        <li class="social-item">
-          <a href="//jsfiddle.net/user/{{ . }}" rel="me" title="JSFiddle" aria-label="JSFiddle">
-            <span class="{{ $jsfiddleIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//jsfiddle.net/user/{{ . }}" rel="me" title="JSFiddle" aria-label="JSFiddle">
+          <span class="{{ $jsfiddleIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.codepen -}}
-        <li class="social-item">
-          <a href="//codepen.io/{{ . }}" rel="me" title="Codepen" aria-label="Codepen">
-            <span class="{{ $codepenIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//codepen.io/{{ . }}" rel="me" title="Codepen" aria-label="Codepen">
+          <span class="{{ $codepenIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.codesandbox -}}
-        <li class="social-item">
-          <a href="//codesandbox.io/u/{{ . }}" title="CodeSandbox" aria-label="CodeSandbox">
-            <span class="{{ $codesandboxIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//codesandbox.io/u/{{ . }}" title="CodeSandbox" aria-label="CodeSandbox">
+          <span class="{{ $codesandboxIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.weibo -}}
-        <li class="social-item">
-          <a href="//weibo.com/{{ . }}" rel="me" title="Weibo" aria-label="Weibo">
-            <span class="{{ $weiboIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//weibo.com/{{ . }}" rel="me" title="Weibo" aria-label="Weibo">
+          <span class="{{ $weiboIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.linkedin -}}
-        <li class="social-item">
-          <a href="//www.linkedin.com/in/{{ . }}" rel="me" title="LinkedIn" aria-label="LinkedIn">
-            <span class="{{ $linkedinIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//www.linkedin.com/in/{{ . }}" rel="me" title="LinkedIn" aria-label="LinkedIn">
+          <span class="{{ $linkedinIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.zhihu -}}
-        <li class="social-item">
-          <a href="//www.zhihu.com/people/{{ . }}" rel="me" title="Zhihu" aria-label="Zhihu">
-            <span class="{{ $zhihuIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//www.zhihu.com/people/{{ . }}" rel="me" title="Zhihu" aria-label="Zhihu">
+          <span class="{{ $zhihuIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.douban -}}
-        <li class="social-item">
-          <a href="//www.douban.com/people/{{ . }}" rel="me" title="Douban" aria-label="Douban">
-            <span class="{{ $doubanIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//www.douban.com/people/{{ . }}" rel="me" title="Douban" aria-label="Douban">
+          <span class="{{ $doubanIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.bilibili -}}
-        <li class="social-item">
-          <a href="//space.bilibili.com/{{ . }}" rel="me" title="Bilibili" aria-label="Bilibili">
-            <span class="{{ $bilibiliIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a href="//space.bilibili.com/{{ . }}" rel="me" title="Bilibili" aria-label="Bilibili">
+          <span class="{{ $bilibiliIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
 
       {{- with .Site.Params.rss -}}
-        <li class="social-item">
-          <a rel="alternate" type="application/rss+xml" href="{{ . | relURL }}" title="RSS" aria-label="RSS">
-            <span class="{{ $rssIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
+      <li class="social-item">
+        <a rel="alternate" type="application/rss+xml" href="{{ . | relURL }}" title="RSS" aria-label="RSS">
+          <span class="{{ $rssIcon }}" aria-hidden="true"></span>
+        </a>
+      </li>
       {{- end -}}
     </ul>
   </nav>
