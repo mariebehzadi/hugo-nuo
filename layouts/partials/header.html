@@ -1,4 +1,3 @@
-{{- $wechat := resources.Get (.Site.Params.wechat | default "images/qrcode.jpg") -}}
 {{- $avatar := .Site.Params.avatar -}}
 
 <header class="site-header">
@@ -26,6 +25,15 @@
           {{ if and (eq .Identifier "home") (eq $type "post") }} is-active{{ end }}">
           <a href="{{ .URL }}">{{ .Name }}</a>
         </li>
+      {{ end }}
+
+       <!-- Flag Language -->
+      {{ if .IsTranslated }}    
+        {{ range .Translations }}
+          <li class="menu-item">              
+              <a href="{{ .Permalink }}"><img src="{{ .Site.Params.flag }}" width="20px" /> {{ .Site.Params.language }}</a>
+          </li>
+        {{ end}}
       {{ end }}
     </ul>
   </nav>
@@ -80,7 +88,6 @@
         {{- $codepenIcon = "fab fa-codepen" -}}
         {{- $codesandboxIcon = "fas fa-code" -}}
         {{- $weiboIcon = "fab fa-weibo" -}}
-        {{- $wechatIcon = "fab fa-weixin" -}}
         {{- $linkedinIcon = "fab fa-linkedin" -}}
         {{- $zhihuIcon = "fab fa-zhihu" -}}
         {{- $doubanIcon = "fas fa-comment" -}}
@@ -244,14 +251,6 @@
         <li class="social-item">
           <a href="//weibo.com/{{ . }}" rel="me" title="Weibo" aria-label="Weibo">
             <span class="{{ $weiboIcon }}" aria-hidden="true"></span>
-          </a>
-        </li>
-      {{- end -}}
-
-      {{- with .Site.Params.wechat -}}
-        <li class="social-item">
-          <a href="{{ $wechat.RelPermalink }}" rel="me" title="Wechat" aria-label="Wechat">
-            <span class="{{ $wechatIcon }}" aria-hidden="true"></span>
           </a>
         </li>
       {{- end -}}
