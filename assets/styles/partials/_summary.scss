@@ -43,7 +43,7 @@
     width: 8rem;
     height: 8rem;
     object-fit: cover;
-    font-family: 'object-fit: cover;'; // Polyfill for object-fit
+    font-family: $family-shabnam; // Polyfill for object-fit
     border-radius: $radius;
 
     & + .post-summary {

@@ -1,3 +1,12 @@
 @import 'partials/variables';
 
-/* Override theme styles here */
+/* Shabnam Font */
+@font-face {
+    font-family: 'Shabnam';
+    src: url('/static/fonts/Shabnam.eot');
+    src: 
+        url('/static/fonts/Shabnam.woff') format('woff'),
+        url('/static/fonts/Shabnam.ttf') format('truetype'),
+        url('/static/fonts/Shabnam.eot?#iefix') format('embedded-opentype');
+    font-weight: normal;
+}
